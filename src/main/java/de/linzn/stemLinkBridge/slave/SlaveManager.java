@@ -12,6 +12,7 @@
 package de.linzn.stemLinkBridge.slave;
 
 import de.linzn.stemLink.components.encryption.CryptContainer;
+import de.linzn.stemLink.connections.ClientType;
 import de.linzn.stemLink.connections.client.ClientConnection;
 import de.linzn.stemLinkBridge.StemLinkBridgePlugin;
 import de.stem.stemSystem.STEMSystemApp;
@@ -36,7 +37,7 @@ public class SlaveManager {
         this.cryptAESKey = StemLinkBridgePlugin.stemLinkBridgePlugin.getDefaultConfig().getString("connector.crypt.cryptAESKey");
         this.vector16B = toByteArray(StemLinkBridgePlugin.stemLinkBridgePlugin.getDefaultConfig().getString("connector.crypt.vector16B"));
         this.cryptContainer = new CryptContainer(cryptAESKey, vector16B);
-        this.clientConnection = new ClientConnection(this.host, this.port, clientUUID, new StemLinkBridgeWrapper(), this.cryptContainer);
+        this.clientConnection = new ClientConnection(this.host, this.port, clientUUID, ClientType.SLAVE, new StemLinkBridgeWrapper(), this.cryptContainer);
     }
 
     private static byte[] toByteArray(String string) {
