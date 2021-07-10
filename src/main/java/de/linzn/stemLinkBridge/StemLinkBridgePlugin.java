@@ -12,7 +12,9 @@
 package de.linzn.stemLinkBridge;
 
 
+import de.linzn.restfulapi.RestFulApiPlugin;
 import de.linzn.stemLinkBridge.master.MasterManager;
+import de.linzn.stemLinkBridge.restApi.GET_StemLink;
 import de.linzn.stemLinkBridge.slave.SlaveManager;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
@@ -62,6 +64,7 @@ public class StemLinkBridgePlugin extends STEMPlugin {
         } else {
             STEMSystemApp.LOGGER.CONFIG("StemLink bridge is disabled!");
         }
+        RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_StemLink());
     }
 
 
@@ -78,6 +81,10 @@ public class StemLinkBridgePlugin extends STEMPlugin {
 
     public boolean isMasterMode() {
         return masterMode;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public SlaveManager getSlaveManager() {
