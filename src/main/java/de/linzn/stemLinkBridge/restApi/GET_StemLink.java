@@ -65,6 +65,6 @@ public class GET_StemLink implements IRequest {
 
     @Override
     public String name() {
-        return "stem-link";
+        return "stemlink";
     }
 }
