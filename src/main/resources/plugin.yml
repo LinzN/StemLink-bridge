@@ -1,4 +1,4 @@
 main: de.linzn.stemLinkBridge.StemLinkBridgePlugin
 name: stemLink-bridge
 version: ${project.version}
-depend: [ restful-api ]
+depend: [ restful-api, home-devices]
