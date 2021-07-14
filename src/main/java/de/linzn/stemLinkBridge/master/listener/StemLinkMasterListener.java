@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.stemLinkBridge.master;
+package de.linzn.stemLinkBridge.master.listener;
 
 
 import de.linzn.stemLink.components.events.ReceiveDataEvent;
@@ -50,6 +50,23 @@ public class StemLinkMasterListener {
             STEMSystemApp.LOGGER.ERROR(e);
         }
 
+    }
+
+    @EventHandler(channel = "stemLink_bridge_device_update")
+    public void onDeviceInfoUpdate(ReceiveDataEvent event) {
+        DataInputStream in = new DataInputStream(new ByteArrayInputStream(event.getDataInBytes()));
+        try {
+            String subChannel = in.readUTF();
+
+            if (subChannel.equalsIgnoreCase("update_device")) {
+                String configName = in.readUTF();
+                boolean newValue = in.readBoolean();
+                STEMSystemApp.LOGGER.CONFIG("Extern deviceUpdate on slave system: " + configName + " " + newValue);
+            }
+
+        } catch (IOException e) {
+            STEMSystemApp.LOGGER.ERROR(e);
+        }
     }
 
 }

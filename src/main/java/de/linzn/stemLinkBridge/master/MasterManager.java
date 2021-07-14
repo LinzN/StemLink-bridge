@@ -11,6 +11,7 @@
 
 package de.linzn.stemLinkBridge.master;
 
+import de.linzn.stemLinkBridge.master.listener.StemLinkMasterListener;
 import de.stem.stemSystem.STEMSystemApp;
 
 public class MasterManager {

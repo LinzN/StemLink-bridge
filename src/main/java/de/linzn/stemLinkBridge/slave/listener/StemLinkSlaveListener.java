@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.stemLinkBridge.slave;
+package de.linzn.stemLinkBridge.slave.listener;
 
 
 import de.linzn.stemLink.components.events.ConnectEvent;

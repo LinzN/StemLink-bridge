@@ -15,6 +15,8 @@ import de.linzn.stemLink.components.encryption.CryptContainer;
 import de.linzn.stemLink.connections.ClientType;
 import de.linzn.stemLink.connections.client.ClientConnection;
 import de.linzn.stemLinkBridge.StemLinkBridgePlugin;
+import de.linzn.stemLinkBridge.slave.listener.StemEventListener;
+import de.linzn.stemLinkBridge.slave.listener.StemLinkSlaveListener;
 import de.stem.stemSystem.STEMSystemApp;
 
 import java.util.UUID;
@@ -50,6 +52,8 @@ public class SlaveManager {
     }
 
     public void register() {
+        STEMSystemApp.getInstance().getEventModule().getStemEventBus().register(new StemEventListener());
+
         this.clientConnection.registerEvents(new StemLinkSlaveListener());
         STEMSystemApp.LOGGER.CONFIG("StemLinkSlaveListener registered");
         this.clientConnection.setEnable();
