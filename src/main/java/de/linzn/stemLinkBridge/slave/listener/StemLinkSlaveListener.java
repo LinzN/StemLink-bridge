@@ -13,6 +13,7 @@ package de.linzn.stemLinkBridge.slave.listener;
 
 
 import de.linzn.stemLink.components.events.ConnectEvent;
+import de.linzn.stemLink.components.events.DisconnectEvent;
 import de.linzn.stemLink.components.events.ReceiveDataEvent;
 import de.linzn.stemLink.components.events.handler.EventHandler;
 import de.linzn.stemLinkBridge.connector.OutputWriter;
@@ -41,6 +42,7 @@ public class StemLinkSlaveListener {
 
     @EventHandler()
     public void onConnect(ConnectEvent event) {
+        STEMSystemApp.LOGGER.WARNING("StemLink slave connected to master server!");
         String headerChannel = "stemLink_bridge";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
@@ -54,6 +56,11 @@ public class StemLinkSlaveListener {
         }
         OutputWriter.writeOutputToLink(headerChannel, byteArrayOutputStream.toByteArray());
 
+    }
+
+    @EventHandler()
+    public void onDisconnect(DisconnectEvent event) {
+        STEMSystemApp.LOGGER.WARNING("StemLink slave disconnected from master server!");
     }
 
 }
