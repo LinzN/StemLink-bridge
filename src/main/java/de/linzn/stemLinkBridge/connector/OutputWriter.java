@@ -21,7 +21,11 @@ public class OutputWriter {
         if (StemLinkBridgePlugin.stemLinkBridgePlugin.isMasterMode()) {
             STEMSystemApp.getInstance().getStemLinkModule().getStemLinkServer().getClients().values().forEach(serverConnection -> serverConnection.writeOutput(headerChannel, bytes));
         } else {
-            StemLinkBridgePlugin.stemLinkBridgePlugin.getSlaveManager().clientConnection.writeOutput(headerChannel, bytes);
+            if(StemLinkBridgePlugin.stemLinkBridgePlugin.getSlaveManager().clientConnection.isValidConnection()){
+                StemLinkBridgePlugin.stemLinkBridgePlugin.getSlaveManager().clientConnection.writeOutput(headerChannel, bytes);
+            } else {
+                STEMSystemApp.LOGGER.WARNING("Slave is not connected to master. Abort update!");
+            }
         }
     }
 }
