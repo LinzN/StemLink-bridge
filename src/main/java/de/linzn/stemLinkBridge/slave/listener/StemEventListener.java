@@ -11,7 +11,7 @@
 
 package de.linzn.stemLinkBridge.slave.listener;
 
-import de.linzn.homeDevices.devices.TasmotaMQTTDevice;
+import de.linzn.homeDevices.devices.switches.SwitchableMQTTDevice;
 import de.linzn.homeDevices.events.DeviceUpdateEvent;
 import de.linzn.stemLinkBridge.connector.OutputWriter;
 import de.stem.stemSystem.STEMSystemApp;
@@ -25,7 +25,7 @@ public class StemEventListener {
 
     @StemEventHandler
     public void onDeviceSwitch(DeviceUpdateEvent deviceUpdateEvent) {
-        TasmotaMQTTDevice tasmotaMQTTDevice = deviceUpdateEvent.getTasmotaMQTTDevice();
+        SwitchableMQTTDevice switchableMQTTDevice = deviceUpdateEvent.getSwitchableMQTTDevice();
 
         String headerChannel = "stemLink_bridge_device_update";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -33,7 +33,7 @@ public class StemEventListener {
 
         try {
             dataOutputStream.writeUTF("update_device");
-            dataOutputStream.writeUTF(tasmotaMQTTDevice.configName);
+            dataOutputStream.writeUTF(switchableMQTTDevice.configName);
             dataOutputStream.writeBoolean(deviceUpdateEvent.getNewStatus());
         } catch (IOException e) {
             STEMSystemApp.LOGGER.ERROR(e);
