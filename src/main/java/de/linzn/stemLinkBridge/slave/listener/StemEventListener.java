@@ -12,7 +12,7 @@
 package de.linzn.stemLinkBridge.slave.listener;
 
 import de.linzn.homeDevices.devices.interfaces.MqttSwitch;
-import de.linzn.homeDevices.events.DeviceUpdateEvent;
+import de.linzn.homeDevices.events.records.DeviceUpdateEvent;
 import de.linzn.stemLinkBridge.connector.OutputWriter;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.eventModule.handler.StemEventHandler;
@@ -25,7 +25,7 @@ public class StemEventListener {
 
     @StemEventHandler
     public void onDeviceSwitch(DeviceUpdateEvent deviceUpdateEvent) {
-        MqttSwitch switchableMQTTDevice = deviceUpdateEvent.getSwitchableMQTTDevice();
+        MqttSwitch switchableMQTTDevice = deviceUpdateEvent.mqttSwitch();
 
         String headerChannel = "stemLink_bridge_device_update";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -34,7 +34,7 @@ public class StemEventListener {
         try {
             dataOutputStream.writeUTF("update_device");
             dataOutputStream.writeUTF(switchableMQTTDevice.getConfigName());
-            dataOutputStream.writeBoolean(deviceUpdateEvent.getNewStatus());
+            dataOutputStream.writeBoolean(deviceUpdateEvent.newStatus());
         } catch (IOException e) {
             STEMSystemApp.LOGGER.ERROR(e);
         }
