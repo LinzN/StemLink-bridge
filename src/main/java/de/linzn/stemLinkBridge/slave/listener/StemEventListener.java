@@ -1,21 +1,22 @@
 /*
- * Copyright (C) 2021. Niklas Linz - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the LGPLv3 license, which unfortunately won't be
- * written for another century.
+ * Copyright (c) 2025 MirraNET, Niklas Linz. All rights reserved.
  *
- * You should have received a copy of the LGPLv3 license with
- * this file. If not, please write to: niklas.linz@enigmar.de
+ * This file is part of the MirraNET project and is licensed under the
+ * GNU Lesser General Public License v3.0 (LGPLv3).
  *
+ * You may use, distribute and modify this code under the terms
+ * of the LGPLv3 license. You should have received a copy of the
+ * license along with this file. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>
+ * or contact: niklas.linz@mirranet.de
  */
 
 package de.linzn.stemLinkBridge.slave.listener;
 
 import de.linzn.homeDevices.devices.interfaces.MqttSwitch;
 import de.linzn.homeDevices.events.records.DeviceUpdateEvent;
+import de.linzn.stem.STEMApp;
+import de.linzn.stem.modules.eventModule.handler.StemEventHandler;
 import de.linzn.stemLinkBridge.connector.OutputWriter;
-import de.stem.stemSystem.STEMSystemApp;
-import de.stem.stemSystem.modules.eventModule.handler.StemEventHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -36,7 +37,7 @@ public class StemEventListener {
             dataOutputStream.writeUTF(switchableMQTTDevice.getConfigName());
             dataOutputStream.writeBoolean(deviceUpdateEvent.newStatus());
         } catch (IOException e) {
-            STEMSystemApp.LOGGER.ERROR(e);
+            STEMApp.LOGGER.ERROR(e);
         }
 
         OutputWriter.writeOutputToLink(headerChannel, byteArrayOutputStream.toByteArray());

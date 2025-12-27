@@ -1,42 +1,43 @@
 /*
- * Copyright (C) 2021. Niklas Linz - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the LGPLv3 license, which unfortunately won't be
- * written for another century.
+ * Copyright (c) 2025 MirraNET, Niklas Linz. All rights reserved.
  *
- * You should have received a copy of the LGPLv3 license with
- * this file. If not, please write to: niklas.linz@enigmar.de
+ * This file is part of the MirraNET project and is licensed under the
+ * GNU Lesser General Public License v3.0 (LGPLv3).
  *
+ * You may use, distribute and modify this code under the terms
+ * of the LGPLv3 license. You should have received a copy of the
+ * license along with this file. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>
+ * or contact: niklas.linz@mirranet.de
  */
 
 package de.linzn.stemLinkBridge.slave;
 
+import de.linzn.stem.STEMApp;
 import de.linzn.stemLink.components.IStemLinkWrapper;
 import de.linzn.stemLinkBridge.StemLinkBridgePlugin;
-import de.stem.stemSystem.STEMSystemApp;
 
 import java.util.logging.Level;
 
 public class StemLinkBridgeWrapper implements IStemLinkWrapper {
     @Override
     public void runThread(Runnable runnable) {
-        STEMSystemApp.getInstance().getScheduler().runTask(StemLinkBridgePlugin.stemLinkBridgePlugin, runnable);
+        STEMApp.getInstance().getScheduler().runTask(StemLinkBridgePlugin.stemLinkBridgePlugin, runnable);
     }
 
     @Override
     public void log(Object s, Level level) {
         if (level == Level.INFO) {
-            STEMSystemApp.LOGGER.INFO(s);
+            STEMApp.LOGGER.INFO(s);
         } else if (level == Level.FINE) {
-            STEMSystemApp.LOGGER.DEBUG(s);
+            STEMApp.LOGGER.DEBUG(s);
         } else if (level == Level.WARNING) {
-            STEMSystemApp.LOGGER.WARNING(s);
+            STEMApp.LOGGER.WARNING(s);
         } else if (level == Level.CONFIG) {
-            STEMSystemApp.LOGGER.CONFIG(s);
+            STEMApp.LOGGER.CONFIG(s);
         } else if (level == Level.SEVERE) {
-            STEMSystemApp.LOGGER.ERROR(s);
+            STEMApp.LOGGER.ERROR(s);
         } else {
-            STEMSystemApp.LOGGER.DEBUG(s);
+            STEMApp.LOGGER.DEBUG(s);
         }
 
     }

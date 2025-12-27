@@ -1,6 +1,6 @@
 main: de.linzn.stemLinkBridge.StemLinkBridgePlugin
 name: stemLink-bridge
 version: ${project.version}
-depend: [ restful-api, home-devices]
+depend: [ restful-api, home-devices ]
 buildJobName: ${buildServer.jobName}
 buildNumber: ${buildServer.buildNumber}

@@ -1,23 +1,22 @@
 /*
- * Copyright (C) 2021. Niklas Linz - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the LGPLv3 license, which unfortunately won't be
- * written for another century.
+ * Copyright (c) 2025 MirraNET, Niklas Linz. All rights reserved.
  *
- * You should have received a copy of the LGPLv3 license with
- * this file. If not, please write to: niklas.linz@enigmar.de
+ * This file is part of the MirraNET project and is licensed under the
+ * GNU Lesser General Public License v3.0 (LGPLv3).
  *
+ * You may use, distribute and modify this code under the terms
+ * of the LGPLv3 license. You should have received a copy of the
+ * license along with this file. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>
+ * or contact: niklas.linz@mirranet.de
  */
 
 package de.linzn.stemLinkBridge;
 
 
-import de.linzn.restfulapi.RestFulApiPlugin;
+import de.linzn.stem.STEMApp;
+import de.linzn.stem.modules.pluginModule.STEMPlugin;
 import de.linzn.stemLinkBridge.master.MasterManager;
-import de.linzn.stemLinkBridge.restApi.GET_StemLink;
 import de.linzn.stemLinkBridge.slave.SlaveManager;
-import de.stem.stemSystem.STEMSystemApp;
-import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -62,9 +61,8 @@ public class StemLinkBridgePlugin extends STEMPlugin {
                 this.slaveManager.register();
             }
         } else {
-            STEMSystemApp.LOGGER.CONFIG("StemLink bridge is disabled!");
+            STEMApp.LOGGER.CONFIG("StemLink bridge is disabled!");
         }
-        RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_StemLink());
     }
 
 
