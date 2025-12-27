@@ -85,12 +85,6 @@
         </dependency>
         <dependency>
             <groupId>de.stem.plugins</groupId>
-            <artifactId>web-api</artifactId>
-            <version>1.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.stem.plugins</groupId>
             <artifactId>home-devices</artifactId>
             <version>1.1-SNAPSHOT</version>
             <scope>provided</scope>
